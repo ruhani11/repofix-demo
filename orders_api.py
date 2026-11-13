@@ -16,7 +16,7 @@ class OrderRequest(BaseModel):
 
 @app.post("/orders", status_code=status.HTTP_201_CREATED)
 def create_order(order: OrderRequest) -> dict[str, str | int]:
-    if order.quantity <= 1:
+    if order.quantity <= 0:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Quantity must be a positive integer.",
